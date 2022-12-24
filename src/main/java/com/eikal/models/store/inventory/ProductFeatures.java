@@ -42,7 +42,3 @@ public class ProductFeatures {
     private String availability;
     private String dosageForm;
 }
-
-/**
- *
- */

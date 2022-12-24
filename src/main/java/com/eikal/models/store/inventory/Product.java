@@ -1,7 +1,11 @@
 package com.eikal.models.store.inventory;
 
 import com.eikal.models.facility.Facility;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -37,7 +41,9 @@ public class Product {
 
     private String itemCode;
 
-    @OneToMany(mappedBy = "product")
+    @JsonIgnoreProperties("productFeatures")
+    @JsonBackReference
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductFeatures> productFeatures;
 
     @ManyToMany
@@ -56,6 +62,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "vendor_id")
     private Facility vendor;
+
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id")
     private String manufacturer;
 
 }
