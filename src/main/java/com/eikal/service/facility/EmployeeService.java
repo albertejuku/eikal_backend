@@ -28,7 +28,8 @@ public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final AppUserService appUserService;
-private final EmployeeCategoryService categoryService;
+    private final EmployeeCategoryService categoryService;
+
     @Autowired
     public EmployeeService(EmployeeRepository employeeRepository, AppUserService appUserService, EmployeeCategoryService employeeCategoryService) {
         this.employeeRepository = employeeRepository;
@@ -49,7 +50,7 @@ private final EmployeeCategoryService categoryService;
         employee.setAppUser(appUser);
         employee.setFacility(new Facility(Long.valueOf((Integer) employeeMap.get("facility"))));
 
-        EmployeeCategory category =     categoryService.findCategoryById(Long.valueOf((Integer) employeeMap.get("category")));
+        EmployeeCategory category = categoryService.findCategoryById(Long.valueOf((Integer) employeeMap.get("category")));
         employee.setCategory(category);
         return employeeRepository.save(employee);
     }
