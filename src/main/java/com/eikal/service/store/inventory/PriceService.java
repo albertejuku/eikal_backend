@@ -17,8 +17,8 @@ public class PriceService {
     @Autowired
     private PriceRepo priceRepo;
 
-    public void addPrice(Price price) {
-        priceRepo.save(price);
+    public Price addPrice(Price price) {
+        return priceRepo.save(price);
     }
 
     public Price updatePrice(Price price,Long Id) {

@@ -22,5 +22,4 @@ public interface ProductFeatureRepo extends JpaRepository<ProductFeatures, Long>
 
     Page<ProductFeatures> findByDosageForm(String dosageForm, Pageable pageable);
 
-
 }

@@ -18,8 +18,8 @@ public class ManufactureService {
     @Autowired
     private ManufacturerRepo manufacturerRepo;
 
-    public void addManufacture(Manufacturer manufacturer) {
-        manufacturerRepo.save(manufacturer);
+    public Manufacturer addManufacture(Manufacturer manufacturer) {
+        return manufacturerRepo.save(manufacturer);
     }
 
     public Manufacturer updateManufacturer(Manufacturer manufacturer, Long Id) {

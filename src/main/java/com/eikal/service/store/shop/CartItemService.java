@@ -17,8 +17,8 @@ public class CartItemService {
     @Autowired
     private CartItemRepo cartItemRepo;
 
-    public void addCartItem(CartItem cartItem) {
-        cartItemRepo.save(cartItem);
+    public CartItem addCartItem(CartItem cartItem) {
+        return cartItemRepo.save(cartItem);
     }
 
     public CartItem updateCartItem(CartItem cartItem, Long Id) {

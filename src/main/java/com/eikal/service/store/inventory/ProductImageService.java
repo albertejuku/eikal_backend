@@ -15,8 +15,8 @@ public class ProductImageService {
     @Autowired
     private ProductImageRepo productImageRepo;
 
-    public void addProductImage(ProductImage productImage) {
-        productImageRepo.save(productImage);
+    public ProductImage addProductImage(ProductImage productImage) {
+        return productImageRepo.save(productImage);
     }
 
     public ProductImage updateProductImage(ProductImage productImage, Long Id) {

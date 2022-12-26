@@ -19,8 +19,8 @@ public class OrderService {
     private OrderRepo orderRepo;
 
 
-    public void addOrder(Order_ order) {
-        orderRepo.save(order);
+    public Order_ addOrder(Order_ order) {
+        return orderRepo.save(order);
     }
 
     public Order_ updateOrder(Order_ order,Long Id) {

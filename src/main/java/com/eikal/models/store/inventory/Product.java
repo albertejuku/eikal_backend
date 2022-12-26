@@ -65,6 +65,6 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "manufacturer_id")
-    private String manufacturer;
+    private Manufacturer manufacturer;
 
 }

@@ -17,8 +17,8 @@ public class OrderedItemService {
     @Autowired
     private OrderedItemRepo orderedItemRepo;
 
-    public void addOrderedItem(OrderedItem orderedItem) {
-        orderedItemRepo.save(orderedItem);
+    public OrderedItem addOrderedItem(OrderedItem orderedItem) {
+        return orderedItemRepo.save(orderedItem);
     }
 
     public OrderedItem updateOrderedItem(OrderedItem orderedItem, Long Id) {

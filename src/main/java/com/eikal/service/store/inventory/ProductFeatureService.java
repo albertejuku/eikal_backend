@@ -17,8 +17,8 @@ public class ProductFeatureService {
     @Autowired
     private ProductFeatureRepo productFeatureRepo;
 
-    public void addProductFeature(ProductFeatures productFeatures) {
-        productFeatureRepo.save(productFeatures);
+    public ProductFeatures addProductFeature(ProductFeatures productFeatures) {
+        return productFeatureRepo.save(productFeatures);
     }
 
     public ProductFeatures updateProductFeature(ProductFeatures productFeatures, Long Id) {

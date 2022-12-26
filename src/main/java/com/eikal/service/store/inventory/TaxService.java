@@ -17,8 +17,8 @@ public class TaxService {
     @Autowired
     private TaxRepo taxRepo;
 
-    public void addTax(Tax tax) {
-        taxRepo.save(tax);
+    public Tax addTax(Tax tax) {
+        return taxRepo.save(tax);
     }
 
     public Tax updateTax(Tax tax, Long Id) {

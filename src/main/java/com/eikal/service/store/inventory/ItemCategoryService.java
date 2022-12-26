@@ -16,8 +16,8 @@ public class ItemCategoryService {
     @Autowired
     private ItemCategoryRepo itemCategoryRepo;
 
-    public void addCategory(ItemCategory itemCategory) {
-        itemCategoryRepo.save(itemCategory);
+    public ItemCategory addCategory(ItemCategory itemCategory) {
+        return itemCategoryRepo.save(itemCategory);
     }
 
     public ItemCategory updateCategory(ItemCategory itemCategory, Long Id) {
