@@ -41,9 +41,7 @@ public class PatientController {
     @GetMapping("patients/facility")
     public ResponseEntity<?> findPatientsInFacility(@RequestParam("id") Long facilityId, @RequestParam int page, @RequestParam int size) {
         Page<Patient> patientPage = patientService.findPatientsInFacility(facilityId, page, size);
-        return !patientPage.getContent().isEmpty() ?
-                ResponseEntity.status(200).body(patientPage) :
-                ResponseEntity.status(415).body("No patient in this page");
+        return ResponseEntity.status(200).body(patientPage);
     }
 
 }
