@@ -26,7 +26,7 @@ public class Address {
     private String name;
 
     @Column(length = 100)
-    private String address_;
+    private String address;
 
     @Column(length = 50)
     private String code;
