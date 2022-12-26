@@ -54,7 +54,6 @@ public class DepartmentController {
                 ResponseEntity.status(415).build();
     }
 
-
     @GetMapping("department/members")
     public ResponseEntity<?> findAllEmpInDep(@RequestParam("depId") Long depId) {
         List<EmployeeDepartment> departments = departmentService.findAllEmployeesInDepartment(depId);

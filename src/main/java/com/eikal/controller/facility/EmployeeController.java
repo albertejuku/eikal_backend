@@ -39,11 +39,12 @@ public class EmployeeController {
                 ResponseEntity.status(200).body(employee);
     }
 
-    @GetMapping("employees")
-    public ResponseEntity<?> findEmployeesInFacility(Long id) {
+    @GetMapping("employees/facility")
+    public ResponseEntity<?> findEmployeesInFacility(@RequestParam("id") Long id) {
         List<Employee> employees = employeeService.findAllEmployeesInFacility(id);
         return employees.isEmpty() ?
                 ResponseEntity.status(404).body("Facility has no employees") :
                 ResponseEntity.status(200).body(employees);
     }
+
 }
