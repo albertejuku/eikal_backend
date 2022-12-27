@@ -39,16 +39,12 @@ public class ManufacturerController {
     @GetMapping("manufacturer/businessCategory")
     public ResponseEntity<?> findBusinessCategory(@RequestParam String business,@RequestParam int page,@RequestParam int size) {
         Page<Manufacturer> manufacturerPage = manufactureService.findBusinessCategory(business,page,size);
-        return !manufacturerPage.isEmpty() ?
-                ResponseEntity.status(200).body(manufacturerPage) :
-                ResponseEntity.notFound().build();
+        return ResponseEntity.status(200).body(manufacturerPage);
     }
 
     @GetMapping("manufacturer/location")
     public ResponseEntity<?> findLocation(@RequestParam String location,@RequestParam int page,@RequestParam int size) {
         Page<Manufacturer> manufacturerPage = manufactureService.findLocation(location,page,size);
-        return !manufacturerPage.isEmpty() ?
-                ResponseEntity.status(200).body(manufacturerPage) :
-                ResponseEntity.notFound().build();
+        return ResponseEntity.status(200).body(manufacturerPage);
     }
 }
