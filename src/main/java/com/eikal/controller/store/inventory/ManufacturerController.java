@@ -1,6 +1,7 @@
 package com.eikal.controller.store.inventory;
 
 
+import com.eikal.error.GlobalError;
 import com.eikal.models.store.inventory.Manufacturer;
 import com.eikal.service.store.inventory.ManufactureService;
 import org.springframework.data.domain.Page;
@@ -25,15 +26,15 @@ public class ManufacturerController {
         Manufacturer addedManufacturer = manufactureService.addManufacture(manufacturer);
         return addedManufacturer != null ?
            ResponseEntity.status(201).body(addedManufacturer) :
-           ResponseEntity.status(415).build();
+           ResponseEntity.status(400).body(new GlobalError((short) 400,"Manufacturer not added"));
     }
 
     @PutMapping("manufacturer/update")
     public ResponseEntity<?> updateManufacturer(@RequestBody Manufacturer manufacturer, @RequestParam Long Id) {
         Manufacturer updatedManufacture = manufactureService.updateManufacturer(manufacturer,Id);
         return updatedManufacture != null ?
-                ResponseEntity.ok().body(updatedManufacture) :
-                ResponseEntity.status(415).build();
+                ResponseEntity.status(201).body(updatedManufacture) :
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Manufacturer not updated"));
     }
 
     @GetMapping("manufacturer/businessCategory")

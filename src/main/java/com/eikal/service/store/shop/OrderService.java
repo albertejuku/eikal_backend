@@ -3,7 +3,6 @@ package com.eikal.service.store.shop;
 
 import com.eikal.models.store.shop.Order_;
 import com.eikal.repository.store.shop.OrderRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -15,8 +14,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderService {
 
-    @Autowired
-    private OrderRepo orderRepo;
+
+    private final OrderRepo orderRepo;
+
+    public OrderService(OrderRepo orderRepo) {
+        this.orderRepo = orderRepo;
+    }
 
 
     public Order_ addOrder(Order_ order) {

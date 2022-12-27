@@ -2,7 +2,6 @@ package com.eikal.service.store.inventory;
 
 import com.eikal.models.store.inventory.ItemCategory;
 import com.eikal.repository.store.inventory.ItemCategoryRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 @Service
 public class ItemCategoryService {
 
-    @Autowired
-    private ItemCategoryRepo itemCategoryRepo;
+    private final ItemCategoryRepo itemCategoryRepo;
+
+    public ItemCategoryService(ItemCategoryRepo itemCategoryRepo) {
+        this.itemCategoryRepo = itemCategoryRepo;
+    }
 
     public ItemCategory addCategory(ItemCategory itemCategory) {
         return itemCategoryRepo.save(itemCategory);

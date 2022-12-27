@@ -2,7 +2,6 @@ package com.eikal.service.store.shop;
 
 import com.eikal.models.store.shop.CartItem;
 import com.eikal.repository.store.shop.CartItemRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +13,12 @@ import java.util.List;
 @Service
 public class CartItemService {
 
-    @Autowired
-    private CartItemRepo cartItemRepo;
+
+    private final CartItemRepo cartItemRepo;
+
+    public CartItemService(CartItemRepo cartItemRepo) {
+        this.cartItemRepo = cartItemRepo;
+    }
 
     public CartItem addCartItem(CartItem cartItem) {
         return cartItemRepo.save(cartItem);

@@ -3,18 +3,19 @@ package com.eikal.service.store.inventory;
 
 import com.eikal.models.store.inventory.Product;
 import com.eikal.repository.store.inventory.ProductRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ProductService {
 
-    @Autowired
-    private ProductRepo productRepo;
+
+    private final ProductRepo productRepo;
+
+    public ProductService(ProductRepo productRepo) {
+        this.productRepo = productRepo;
+    }
 
     public Product addProduct(Product product) {
         return productRepo.save(product);
@@ -45,8 +46,8 @@ public class ProductService {
         return productRepo.findByItemCode(itemCode);
     }
 
-    public Page<Product> findProductByManufacturer(Long Id,int page,int size) {
-        return productRepo.findAllByManufacturer_Id(Id, PageRequest.of(page,size));
+    public Page<Product> findProductByManufacturer(Long id,int page,int size) {
+        return productRepo.findAllByManufacturer_Id(id, PageRequest.of(page,size));
     }
 
     public Page<Product> findByTaxType(String type,int page,int size) {

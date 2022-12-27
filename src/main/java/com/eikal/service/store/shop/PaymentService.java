@@ -2,7 +2,6 @@ package com.eikal.service.store.shop;
 
 import com.eikal.models.store.shop.Payment;
 import com.eikal.repository.store.shop.PaymentRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -14,8 +13,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentService {
 
-    @Autowired
-    private PaymentRepo paymentRepo;
+
+    private final PaymentRepo paymentRepo;
+
+    public PaymentService(PaymentRepo paymentRepo) {
+        this.paymentRepo = paymentRepo;
+    }
 
     public Payment addPayment(Payment payment) {
         return paymentRepo.save(payment);

@@ -1,5 +1,6 @@
 package com.eikal.controller.store.inventory;
 
+import com.eikal.error.GlobalError;
 import com.eikal.models.store.inventory.ItemCategory;
 import com.eikal.service.store.inventory.ItemCategoryService;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class ItemCategoryController {
         ItemCategory addedItemCategory = itemCategoryService.addCategory(itemCategory);
         return addedItemCategory != null ?
                 ResponseEntity.status(201).body(addedItemCategory) :
-                ResponseEntity.status(415).build();
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Item category not added"));
     }
 
     @GetMapping("itemCategory/{id}")
@@ -40,8 +41,8 @@ public class ItemCategoryController {
     public ResponseEntity<?> updateCategory(@RequestBody ItemCategory category,@RequestParam Long Id) {
         ItemCategory itemCategory = itemCategoryService.updateCategory(category,Id);
         return itemCategory != null ?
-                ResponseEntity.status(200).body(itemCategory) :
-                ResponseEntity.status(415).build();
+                ResponseEntity.status(201).body(itemCategory) :
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Item Category not updated"));
     }
 
     @GetMapping("itemCategories/all")
