@@ -22,13 +22,13 @@ public class ProductImageService {
         return productImageRepo.save(productImage);
     }
 
-    public ProductImage updateProductImage(ProductImage productImage, Long Id) {
-        productImage.setId(Id);
+    public ProductImage updateProductImage(ProductImage productImage, Long id) {
+        productImage.setId(id);
         return productImageRepo.save(productImage);
     }
 
-    public void deleteProductImage(Long Id) {
-        productImageRepo.deleteById(Id);
+    public void deleteProductImage(Long id) {
+        productImageRepo.deleteById(id);
     }
 
 

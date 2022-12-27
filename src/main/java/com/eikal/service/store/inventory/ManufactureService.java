@@ -25,8 +25,8 @@ public class ManufactureService {
         return manufacturerRepo.save(manufacturer);
     }
 
-    public Manufacturer updateManufacturer(Manufacturer manufacturer, Long Id) {
-        manufacturer.setId(Id);
+    public Manufacturer updateManufacturer(Manufacturer manufacturer, Long id) {
+        manufacturer.setId(id);
         return manufacturerRepo.save(manufacturer);
     }
 
@@ -38,7 +38,7 @@ public class ManufactureService {
         return manufacturerRepo.findByLocation(location, PageRequest.of(page,size));
     }
 
-    public void deleteManufacturer(Long Id) {
-        manufacturerRepo.deleteById(Id);
+    public void deleteManufacturer(Long id) {
+        manufacturerRepo.deleteById(id);
     }
 }

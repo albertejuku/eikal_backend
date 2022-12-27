@@ -24,17 +24,17 @@ public class OrderedItemService {
         return orderedItemRepo.save(orderedItem);
     }
 
-    public OrderedItem updateOrderedItem(OrderedItem orderedItem, Long Id) {
-        orderedItem.setId(Id);
+    public OrderedItem updateOrderedItem(OrderedItem orderedItem, Long id) {
+        orderedItem.setId(id);
         return orderedItemRepo.save(orderedItem);
     }
 
-    public void deleteOrderedItem(Long Id) {
-        orderedItemRepo.deleteById(Id);
+    public void deleteOrderedItem(Long id) {
+        orderedItemRepo.deleteById(id);
     }
 
-    public OrderedItem findOrderedItemById(Long Id) {
-        return orderedItemRepo.findById(Id).orElse(null);
+    public OrderedItem findOrderedItemById(Long id) {
+        return orderedItemRepo.findById(id).orElse(null);
     }
 
     public Page<OrderedItem> findAllOrderedItems(int page,int size) {

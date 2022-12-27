@@ -24,13 +24,13 @@ public class TaxService {
         return taxRepo.save(tax);
     }
 
-    public Tax updateTax(Tax tax, Long Id) {
-        tax.setId(Id);
+    public Tax updateTax(Tax tax, Long id) {
+        tax.setId(id);
         return taxRepo.save(tax);
     }
 
-    public void deleteTax(Long Id) {
-        taxRepo.deleteById(Id);
+    public void deleteTax(Long id) {
+        taxRepo.deleteById(id);
     }
 
     public Page<Tax> findType(String type,int page,int size) {

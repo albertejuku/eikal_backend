@@ -23,8 +23,8 @@ public class PriceService {
         return priceRepo.save(price);
     }
 
-    public Price updatePrice(Price price,Long Id) {
-        price.setId(Id);
+    public Price updatePrice(Price price,Long id) {
+        price.setId(id);
         return priceRepo.save(price);
     }
 

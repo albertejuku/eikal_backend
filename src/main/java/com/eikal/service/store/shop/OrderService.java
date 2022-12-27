@@ -26,17 +26,17 @@ public class OrderService {
         return orderRepo.save(order);
     }
 
-    public Order_ updateOrder(Order_ order,Long Id) {
-        order.setId(Id);
+    public Order_ updateOrder(Order_ order,Long id) {
+        order.setId(id);
         return orderRepo.save(order);
     }
 
-    public void deleteOrder(Long Id) {
-        orderRepo.deleteById(Id);
+    public void deleteOrder(Long id) {
+        orderRepo.deleteById(id);
     }
 
-    public Order_ findOrderById(Long Id) {
-        return orderRepo.findById(Id).orElse(null);
+    public Order_ findOrderById(Long id) {
+        return orderRepo.findById(id).orElse(null);
     }
 
     public Page<Order_> findAllOrders(int page,int size) {

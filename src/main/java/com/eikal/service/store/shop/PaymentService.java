@@ -24,13 +24,13 @@ public class PaymentService {
         return paymentRepo.save(payment);
     }
 
-    public Payment updatePayment(Payment payment,Long Id) {
-        payment.setId(Id);
+    public Payment updatePayment(Payment payment,Long id) {
+        payment.setId(id);
         return paymentRepo.save(payment);
     }
 
-    public void deletePayment(Long Id) {
-        paymentRepo.deleteById(Id);
+    public void deletePayment(Long id) {
+        paymentRepo.deleteById(id);
     }
 
     public Page<Payment> findAllPayments(int page,int size) {

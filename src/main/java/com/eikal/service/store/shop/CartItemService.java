@@ -24,17 +24,17 @@ public class CartItemService {
         return cartItemRepo.save(cartItem);
     }
 
-    public CartItem updateCartItem(CartItem cartItem, Long Id) {
-        cartItem.setId(Id);
+    public CartItem updateCartItem(CartItem cartItem, Long id) {
+        cartItem.setId(id);
         return cartItemRepo.save(cartItem);
     }
 
-    public void deleteCartItem(Long Id) {
-        cartItemRepo.deleteById(Id);
+    public void deleteCartItem(Long id) {
+        cartItemRepo.deleteById(id);
     }
 
-    public CartItem findCartItemById(Long Id) {
-        return cartItemRepo.findById(Id).orElse(null);
+    public CartItem findCartItemById(Long id) {
+        return cartItemRepo.findById(id).orElse(null);
     }
 
     public List<CartItem> findAllCartItems() {

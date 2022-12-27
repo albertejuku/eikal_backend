@@ -34,7 +34,7 @@ public class ItemCategoryController {
         ItemCategory category = itemCategoryService.findCategoryById(Id);
         return category != null ?
                 ResponseEntity.status(200).body(category) :
-                ResponseEntity.status(404).body("did not found category");
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"did not found category"));
     }
 
     @PutMapping("itemCategory/update")
@@ -50,6 +50,6 @@ public class ItemCategoryController {
         List<ItemCategory> itemCategories = itemCategoryService.findAllCategories();
         return !itemCategories.isEmpty() ?
                 ResponseEntity.status(200).body(itemCategories) :
-                ResponseEntity.notFound().build();
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Item categories not found"));
     }
 }

@@ -27,7 +27,7 @@ public class ProductController {
         Product addedProduct = productService.addProduct(product);
         return addedProduct != null ?
                 ResponseEntity.status(201).body(addedProduct) :
-                ResponseEntity.status(400).build();
+                ResponseEntity.status(400).body(new GlobalError((short) 400, "Product was not added"));
     }
 
     @PutMapping("product/update")
