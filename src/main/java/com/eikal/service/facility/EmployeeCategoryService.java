@@ -56,7 +56,7 @@ public class EmployeeCategoryService {
 
     public EmployeeGroup saveGroup(Map<String, Object> groupMap) {
         EmployeeGroup employeeGroup = objectMapper.convertValue(groupMap.get("group"), EmployeeGroup.class);
-        employeeGroup.setFacility(new Facility(Long.valueOf((Integer) groupMap.get("facility"))));
+        employeeGroup.setFacility(new Facility(Long.valueOf(String.valueOf(groupMap.get("facility")))));
         employeeGroup.setDateCreated(LocalDateTime.now());
         employeeGroup.setDateModified(LocalDateTime.now());
         return employeeGroupRepository.save(employeeGroup);
