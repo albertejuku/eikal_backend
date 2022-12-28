@@ -3,6 +3,7 @@ package com.eikal.controller.patient;
 import com.eikal.models.patient.PatientVisit;
 import com.eikal.service.patient.PatientVisitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +51,13 @@ public class PatientVisitController {
                 ResponseEntity.status(200).body(visits) :
                 ResponseEntity.notFound().build();
     }
+
+ @GetMapping("visit/department")
+    public ResponseEntity<?> findVisitsByDepartment(@RequestParam Long id, @RequestParam int page, @RequestParam int size) {
+        Page<PatientVisit> visits = visitService.findAllInDepartment(id, page, size);
+        return ResponseEntity.status(200).body(visits);
+    }
+
 
     @GetMapping("visits")
     public ResponseEntity<?> findAllVisits(@RequestParam int page, @RequestParam int size) {

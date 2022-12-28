@@ -7,6 +7,8 @@ import com.eikal.models.patient.PatientVisit;
 import com.eikal.models.patient.PatientVisitType;
 import com.eikal.repository.patient.PatientVisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -56,6 +58,10 @@ public class PatientVisitService {
 
     public List<PatientVisit> findAllVisits(int page, int size) {
         return visitRepository.findAll();
+    }
+
+    public Page<PatientVisit> findAllInDepartment(Long depId, int page, int size) {
+        return visitRepository.findAllByDepartment_Id(depId, PageRequest.of(page, size));
     }
 
 }

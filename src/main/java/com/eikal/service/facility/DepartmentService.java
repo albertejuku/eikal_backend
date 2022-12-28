@@ -38,7 +38,7 @@ public class DepartmentService {
         department.setModifiedBy(employee);
         department.setDateCreated(LocalDateTime.now());
         department.setDateModified(LocalDateTime.now());
-        department.setFacility(new Facility(Long.valueOf((Integer) departmentMap.get("facility"))));
+        department.setFacility(new Facility(Long.valueOf(String.valueOf(departmentMap.get("facility")))));
         return  departmentRepository.save(department);
     }
 
