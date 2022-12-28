@@ -2,7 +2,6 @@ package com.eikal.service.store.shop;
 
 import com.eikal.models.store.shop.OrderedItem;
 import com.eikal.repository.store.shop.OrderedItemRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -14,24 +13,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderedItemService {
 
-    @Autowired
-    private OrderedItemRepo orderedItemRepo;
+
+    private final OrderedItemRepo orderedItemRepo;
+
+    public OrderedItemService(OrderedItemRepo orderedItemRepo) {
+        this.orderedItemRepo = orderedItemRepo;
+    }
 
     public OrderedItem addOrderedItem(OrderedItem orderedItem) {
         return orderedItemRepo.save(orderedItem);
     }
 
-    public OrderedItem updateOrderedItem(OrderedItem orderedItem, Long Id) {
-        orderedItem.setId(Id);
+    public OrderedItem updateOrderedItem(OrderedItem orderedItem, Long id) {
+        orderedItem.setId(id);
         return orderedItemRepo.save(orderedItem);
     }
 
-    public void deleteOrderedItem(Long Id) {
-        orderedItemRepo.deleteById(Id);
+    public void deleteOrderedItem(Long id) {
+        orderedItemRepo.deleteById(id);
     }
 
-    public OrderedItem findOrderedItemById(Long Id) {
-        return orderedItemRepo.findById(Id).orElse(null);
+    public OrderedItem findOrderedItemById(Long id) {
+        return orderedItemRepo.findById(id).orElse(null);
     }
 
     public Page<OrderedItem> findAllOrderedItems(int page,int size) {

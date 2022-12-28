@@ -1,10 +1,12 @@
 package com.eikal.controller.store.inventory;
 
+import com.eikal.error.GlobalError;
 import com.eikal.models.store.inventory.ItemCategory;
 import com.eikal.service.store.inventory.ItemCategoryService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author David Kinyanjui
@@ -20,10 +22,34 @@ public class ItemCategoryController {
     }
 
     @PostMapping("itemCategory/add")
-    public ResponseEntity<?> addItemCategory(ItemCategory itemCategory) {
+    public ResponseEntity<?> addItemCategory(@RequestBody ItemCategory itemCategory) {
         ItemCategory addedItemCategory = itemCategoryService.addCategory(itemCategory);
         return addedItemCategory != null ?
                 ResponseEntity.status(201).body(addedItemCategory) :
-                ResponseEntity.status(415).build();
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Item category not added"));
+    }
+
+    @GetMapping("itemCategory/{id}")
+    public ResponseEntity<?> findCategory(@PathVariable Long Id) {
+        ItemCategory category = itemCategoryService.findCategoryById(Id);
+        return category != null ?
+                ResponseEntity.status(200).body(category) :
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"did not found category"));
+    }
+
+    @PutMapping("itemCategory/update")
+    public ResponseEntity<?> updateCategory(@RequestBody ItemCategory category,@RequestParam Long Id) {
+        ItemCategory itemCategory = itemCategoryService.updateCategory(category,Id);
+        return itemCategory != null ?
+                ResponseEntity.status(201).body(itemCategory) :
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Item Category not updated"));
+    }
+
+    @GetMapping("itemCategories/all")
+    public ResponseEntity<?> findAllCategories() {
+        List<ItemCategory> itemCategories = itemCategoryService.findAllCategories();
+        return !itemCategories.isEmpty() ?
+                ResponseEntity.status(200).body(itemCategories) :
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Item categories not found"));
     }
 }

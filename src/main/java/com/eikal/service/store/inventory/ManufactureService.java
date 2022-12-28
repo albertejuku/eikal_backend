@@ -3,7 +3,6 @@ package com.eikal.service.store.inventory;
 
 import com.eikal.models.store.inventory.Manufacturer;
 import com.eikal.repository.store.inventory.ManufacturerRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -15,15 +14,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class ManufactureService {
 
-    @Autowired
-    private ManufacturerRepo manufacturerRepo;
+
+    private final ManufacturerRepo manufacturerRepo;
+
+    public ManufactureService(ManufacturerRepo manufacturerRepo) {
+        this.manufacturerRepo = manufacturerRepo;
+    }
 
     public Manufacturer addManufacture(Manufacturer manufacturer) {
         return manufacturerRepo.save(manufacturer);
     }
 
-    public Manufacturer updateManufacturer(Manufacturer manufacturer, Long Id) {
-        manufacturer.setId(Id);
+    public Manufacturer updateManufacturer(Manufacturer manufacturer, Long id) {
+        manufacturer.setId(id);
         return manufacturerRepo.save(manufacturer);
     }
 
@@ -35,7 +38,7 @@ public class ManufactureService {
         return manufacturerRepo.findByLocation(location, PageRequest.of(page,size));
     }
 
-    public void deleteManufacturer(Long Id) {
-        manufacturerRepo.deleteById(Id);
+    public void deleteManufacturer(Long id) {
+        manufacturerRepo.deleteById(id);
     }
 }

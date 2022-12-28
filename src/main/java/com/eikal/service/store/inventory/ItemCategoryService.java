@@ -2,7 +2,6 @@ package com.eikal.service.store.inventory;
 
 import com.eikal.models.store.inventory.ItemCategory;
 import com.eikal.repository.store.inventory.ItemCategoryRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,24 +12,27 @@ import java.util.List;
 @Service
 public class ItemCategoryService {
 
-    @Autowired
-    private ItemCategoryRepo itemCategoryRepo;
+    private final ItemCategoryRepo itemCategoryRepo;
+
+    public ItemCategoryService(ItemCategoryRepo itemCategoryRepo) {
+        this.itemCategoryRepo = itemCategoryRepo;
+    }
 
     public ItemCategory addCategory(ItemCategory itemCategory) {
         return itemCategoryRepo.save(itemCategory);
     }
 
-    public ItemCategory updateCategory(ItemCategory itemCategory, Long Id) {
-        itemCategory.setId(Id);
+    public ItemCategory updateCategory(ItemCategory itemCategory, Long id) {
+        itemCategory.setId(id);
         return itemCategoryRepo.save(itemCategory);
     }
 
-    public void deleteCategory(Long Id) {
-        itemCategoryRepo.deleteById(Id);
+    public void deleteCategory(Long id) {
+        itemCategoryRepo.deleteById(id);
     }
 
-    public ItemCategory findCategoryById(Long Id) {
-        return itemCategoryRepo.findById(Id).orElse(null);
+    public ItemCategory findCategoryById(Long id) {
+        return itemCategoryRepo.findById(id).orElse(null);
     }
 
     public List<ItemCategory> findAllCategories() {
