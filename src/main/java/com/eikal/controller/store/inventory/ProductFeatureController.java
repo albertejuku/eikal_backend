@@ -26,7 +26,7 @@ public class ProductFeatureController {
         ProductFeatures addedProductFeature = productFeatureService.addProductFeature(productFeatures);
         return addedProductFeature != null ?
                 ResponseEntity.status(201).body(addedProductFeature) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400, "Product feature not added"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400, "Not added"));
     }
 
     @PutMapping("productFeature/update")
@@ -34,7 +34,7 @@ public class ProductFeatureController {
         ProductFeatures updatedProductFeatures = productFeatureService.updateProductFeature(productFeatures,id);
         return updatedProductFeatures != null ?
                 ResponseEntity.status(201).body(updatedProductFeatures) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400, "Product feature not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400, "Not updated"));
     }
 
     @GetMapping("productFeature/{id}")
@@ -42,7 +42,7 @@ public class ProductFeatureController {
         ProductFeatures productFeatures = productFeatureService.findProductFeatureById(id);
         return productFeatures != null ?
                 ResponseEntity.status(200).body(productFeatures) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404,"Product feature not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"Not found"));
     }
 
     @GetMapping("productFeature/all")

@@ -24,7 +24,7 @@ public class ProductImageController {
         ProductImage addedProductImage = productImageService.addProductImage(productImage);
         return addedProductImage != null ?
                 ResponseEntity.status(201).body(addedProductImage) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Product image was not added"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not added"));
     }
 
     @PutMapping("productImage/update")
@@ -32,6 +32,6 @@ public class ProductImageController {
         ProductImage updatedProductImage = productImageService.updateProductImage(productImage,id);
         return updatedProductImage != null ?
                 ResponseEntity.status(201).body(updatedProductImage) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Product image was not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not updated"));
     }
 }

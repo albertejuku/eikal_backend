@@ -28,7 +28,7 @@ public class AppointmentController {
         Appointment addedAppointment = appointmentService.addAppointment(appointment);
         return addedAppointment != null ?
                 ResponseEntity.status(201).body(addedAppointment) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Appointment was not added"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not added"));
     }
 
     @PutMapping("appointment/update")
@@ -36,7 +36,7 @@ public class AppointmentController {
         Appointment updatedAppointment = appointmentService.updateAppointment(appointment,id);
         return updatedAppointment != null ?
                 ResponseEntity.status(201).body(updatedAppointment) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Appointment was not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not updated"));
     }
 
     @GetMapping("appointment/all")
@@ -50,7 +50,7 @@ public class AppointmentController {
         Appointment appointment = appointmentService.findAppointmentById(id);
         return appointment != null ?
                 ResponseEntity.status(200).body(appointment) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404,"Appointment not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"Not found"));
     }
 
     @GetMapping("appointment/createdEmail")
@@ -58,7 +58,7 @@ public class AppointmentController {
         List<Appointment> appointments = appointmentService.findByCreatedByEmail(email);
         return !appointments.isEmpty() ?
                 ResponseEntity.status(200).body(appointments) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404,"Appointment not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"Not found"));
     }
 
     @GetMapping("appointment/modifiedEmail")
@@ -66,7 +66,7 @@ public class AppointmentController {
         List<Appointment> appointments = appointmentService.findByModifiedByEmail(email);
         return appointments != null ?
                 ResponseEntity.status(200).body(appointments) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404,"Appointment not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"Not found"));
     }
 
     @GetMapping("appointment/createdId")
@@ -116,7 +116,7 @@ public class AppointmentController {
         List<Appointment> appointments = appointmentService.findByPatientNationalId(nationalId);
         return !appointments.isEmpty() ?
                 ResponseEntity.status(200).body(appointments) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404, "Appointment not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Not found"));
     }
 
     @GetMapping("appointment/patientId")
@@ -124,7 +124,7 @@ public class AppointmentController {
         List<Appointment> appointments = appointmentService.findByPatientId(id);
         return !appointments.isEmpty() ?
                 ResponseEntity.status(200).body(appointments) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404,"Appointment not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"Not found"));
     }
 
     @GetMapping("appointment/medicalPractitionerId")

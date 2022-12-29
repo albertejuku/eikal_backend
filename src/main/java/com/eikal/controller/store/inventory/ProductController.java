@@ -27,7 +27,7 @@ public class ProductController {
         Product addedProduct = productService.addProduct(product);
         return addedProduct != null ?
                 ResponseEntity.status(201).body(addedProduct) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400, "Product was not added"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400, "Not added"));
     }
 
     @PutMapping("product/update")
@@ -35,7 +35,7 @@ public class ProductController {
         Product updateProduct = productService.updateProduct(product,id);
         return updateProduct != null ?
                 ResponseEntity.status(201).body(updateProduct) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400, "Product not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400, "Not updated"));
     }
 
     @GetMapping("product/{id}")
@@ -43,7 +43,7 @@ public class ProductController {
         Product product = productService.findProductsById(id);
         return product != null ?
                 ResponseEntity.status(200).body(product) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404,"Product not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"Not found"));
     }
 
     @GetMapping("product/all")
@@ -63,7 +63,7 @@ public class ProductController {
         Product product = productService.findProductsByCode(itemCode);
         return product != null ?
                 ResponseEntity.status(200).body(product) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404, "Product not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Not found"));
     }
 
     @GetMapping("product/productManufacturer")

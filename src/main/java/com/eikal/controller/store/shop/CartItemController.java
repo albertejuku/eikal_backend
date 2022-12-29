@@ -50,7 +50,7 @@ public class CartItemController {
         List<CartItem> cartItems = cartItemService.findAllCartItems();
         return !cartItems.isEmpty() ?
                 ResponseEntity.status(200).body(cartItems) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404, "cartItems not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Not found"));
     }
 
     @GetMapping("cartItem/email")
@@ -58,6 +58,6 @@ public class CartItemController {
         List<CartItem> cartItems = cartItemService.findByEmail(email);
         return !cartItems.isEmpty() ?
                 ResponseEntity.status(200).body(cartItems) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404, "Cart item not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Not found"));
     }
 }

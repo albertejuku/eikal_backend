@@ -25,7 +25,7 @@ public class PriceController {
         Price addedPrice = priceService.addPrice(price);
         return addedPrice != null ?
                 ResponseEntity.status(201).body(addedPrice) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Price not added"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not added"));
     }
 
     @PutMapping("price/update")
@@ -33,7 +33,7 @@ public class PriceController {
         Price updatedPrice = priceService.updatePrice(price,Id);
         return updatedPrice != null ?
                 ResponseEntity.status(201).body(updatedPrice) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Price not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not updated"));
     }
 
     @GetMapping("price/currency")
