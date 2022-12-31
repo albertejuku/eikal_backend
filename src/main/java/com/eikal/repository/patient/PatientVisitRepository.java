@@ -13,6 +13,6 @@ import java.util.List;
 public interface PatientVisitRepository extends JpaRepository<PatientVisit, Long> {
     List<PatientVisit> findAllByPatient_Id(Long id);
     List<PatientVisit> findAllByDepartment_Facility_Id(Long id);
-
     Page<PatientVisit> findAllByDepartment_Id(Long depId, Pageable page);
+    List<PatientVisit> findAllByPatient_IdAndDepartment_Facility_Id(Long patientId, Long facilityId);
 }

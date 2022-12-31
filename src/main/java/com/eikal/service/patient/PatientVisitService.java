@@ -64,4 +64,8 @@ public class PatientVisitService {
         return visitRepository.findAllByDepartment_Id(depId, PageRequest.of(page, size));
     }
 
+    public List<PatientVisit> findPatientVisitInFacility(Long patientId, Long facilityId) {
+        return visitRepository.findAllByPatient_IdAndDepartment_Facility_Id(patientId, facilityId);
+    }
+
 }

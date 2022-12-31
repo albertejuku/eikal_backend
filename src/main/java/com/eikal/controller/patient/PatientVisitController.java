@@ -1,5 +1,6 @@
 package com.eikal.controller.patient;
 
+import com.eikal.error.GlobalError;
 import com.eikal.models.patient.PatientVisit;
 import com.eikal.service.patient.PatientVisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class PatientVisitController {
         PatientVisit patientVisit = visitService.saveVisit(map);
         return patientVisit != null ?
                 ResponseEntity.status(201).body(patientVisit) :
-                ResponseEntity.status(415).build();
+                ResponseEntity.status(415).body(new GlobalError((short) 415, "Could not create visit"));
     }
 
     @GetMapping("visit/{id}")
@@ -33,7 +34,7 @@ public class PatientVisitController {
         PatientVisit patientVisit = visitService.findVisit(id);
         return patientVisit != null ?
                 ResponseEntity.status(200).body(patientVisit) :
-                ResponseEntity.notFound().build();
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Visit not found"));
     }
 
     @GetMapping("visit/patient")
@@ -41,7 +42,7 @@ public class PatientVisitController {
         List<PatientVisit> visits = visitService.findVisitsByPatient(id);
         return !visits.isEmpty() ?
                 ResponseEntity.status(200).body(visits) :
-                ResponseEntity.notFound().build();
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "No visit by patient found"));
     }
 
     @GetMapping("visit/facility")
@@ -49,22 +50,29 @@ public class PatientVisitController {
         List<PatientVisit> visits = visitService.findVisitsByFacility(id);
         return !visits.isEmpty() ?
                 ResponseEntity.status(200).body(visits) :
-                ResponseEntity.notFound().build();
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "No visit in facility"));
     }
 
- @GetMapping("visit/department")
+    @GetMapping("visit/department")
     public ResponseEntity<?> findVisitsByDepartment(@RequestParam Long id, @RequestParam int page, @RequestParam int size) {
         Page<PatientVisit> visits = visitService.findAllInDepartment(id, page, size);
         return ResponseEntity.status(200).body(visits);
     }
 
+    @GetMapping("visit")
+    public ResponseEntity<?> findPatientVisitInFacility(@RequestParam Long patientId, @RequestParam Long facilityId) {
+        List<PatientVisit> visits = visitService.findPatientVisitInFacility(patientId, facilityId);
+        return !visits.isEmpty() ?
+                ResponseEntity.status(200).body(visits) :
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Patient has no visit"));
+    }
 
     @GetMapping("visits")
     public ResponseEntity<?> findAllVisits(@RequestParam int page, @RequestParam int size) {
         List<PatientVisit> visits = visitService.findAllVisits(page, size);
         return !visits.isEmpty() ?
                 ResponseEntity.status(200).body(visits) :
-                ResponseEntity.notFound().build();
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "No visit found"));
     }
 
 }
