@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -49,6 +50,26 @@ public class PatientService {
     public Page<Patient> findPatientsInFacility(Long facilityId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return patientRepository.findAllByFacility_Id(facilityId, pageable);
+    }
+
+    public List<Patient> findPatientByNationalID(long nationalId) {
+        return patientRepository.findAllByUser_NationalId(nationalId);
+    }
+
+    public List<Patient> findPatientByBirthCert(long birthCert) {
+        return patientRepository.findAllByUser_BirthCertNoContaining(birthCert);
+    }
+
+    public List<Patient> findPatientByPhone(String phone) {
+        return patientRepository.findAllByUser_PhoneContaining(phone);
+    }
+
+    public List<Patient> findPatientByEmail(String email) {
+        return patientRepository.findAllByUser_EmailContaining(email);
+    }
+
+    public List<Patient> findPatientByUsername(String username) {
+        return patientRepository.findAllByUser_UsernameContaining(username);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.eikal.service.people;
 
+import com.eikal.models.patient.Patient;
 import com.eikal.models.people.Relationship;
 import com.eikal.models.people.RelationshipType;
 import com.eikal.models.people.User;
@@ -44,6 +45,26 @@ public class UserService {
     public Page<User> findUsers(int pageNo, int pageSize) {
         Pageable page = PageRequest.of(pageNo, pageSize);
         return userRepository.findAll(page);
+    }
+
+    public List<User> findPatientByNationalID(long nationalId) {
+        return userRepository.findAllByNationalId(nationalId);
+    }
+
+    public List<User> findPatientByBirthCert(long birthCert) {
+        return userRepository.findAllByBirthCertNoContaining(birthCert);
+    }
+
+    public List<User> findPatientByPhone(String phone) {
+        return userRepository.findAllByPhoneContaining(phone);
+    }
+
+    public List<User> findPatientByEmail(String email) {
+        return userRepository.findAllByEmailContaining(email);
+    }
+
+    public List<User> findPatientByUsername(String username) {
+        return userRepository.findAllByUsernameContaining(username);
     }
 
     public Relationship saveRs(Map<? extends String, Object> map) {

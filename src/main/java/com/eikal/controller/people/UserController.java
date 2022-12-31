@@ -1,5 +1,7 @@
 package com.eikal.controller.people;
 
+import com.eikal.error.GlobalError;
+import com.eikal.models.patient.Patient;
 import com.eikal.models.people.Relationship;
 import com.eikal.models.people.User;
 import com.eikal.service.people.UserService;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +34,7 @@ public class UserController {
         user = userService.saveUser(user);
         return user != null ?
                 ResponseEntity.status(201).body(user) :
-                ResponseEntity.status(415).build();
+                ResponseEntity.status(415).body(new GlobalError((short) 415, "User not created"));
     }
 
     @GetMapping("user/{id}")
@@ -39,15 +42,40 @@ public class UserController {
         User user = userService.findUser(id);
         return user != null ?
                 ResponseEntity.status(200).body(user) :
-                ResponseEntity.status(404).body("User not found");
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "User not found"));
     }
 
     @GetMapping("users")
     public ResponseEntity<?> findUsers(@RequestParam("page") int pageNo, @RequestParam("size") int pageSize) {
         Page<User> userPage = userService.findUsers(pageNo, pageSize);
-        return !userPage.getContent().isEmpty() ?
-                ResponseEntity.status(200).body(userPage) :
-                ResponseEntity.status(415).body("no users found");
+        return ResponseEntity.status(200).body(userPage);
+    }
+
+    @GetMapping("user/search")
+    public ResponseEntity<?> findPatientByParameters(
+            @RequestParam(required = false) Long nationalID,
+            @RequestParam(required = false) Long birthCert,
+            @RequestParam(required = false) String phone,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String username
+    ) {
+        List<User> patients = new ArrayList<>();
+
+        if (nationalID != null) {
+            patients = userService.findPatientByNationalID(nationalID);
+        } else if (birthCert != null) {
+            patients = userService.findPatientByBirthCert(birthCert);
+        } else if (phone != null) {
+            patients = userService.findPatientByPhone(phone);
+        } else if (email != null) {
+            patients = userService.findPatientByEmail(email);
+        } else if (username != null) {
+            patients = userService.findPatientByUsername(username);
+        }
+
+        return !patients.isEmpty() ?
+                ResponseEntity.ok().body(patients) :
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "No patient found"));
     }
 
     @PostMapping("relationship/save")

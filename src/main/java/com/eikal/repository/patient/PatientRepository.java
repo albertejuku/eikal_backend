@@ -16,4 +16,14 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     Page<Patient> findAllByFacility_Id(Long facilityId, Pageable pageable);
 
+    List<Patient> findAllByUser_NationalId(long nationalId);
+
+    List<Patient> findAllByUser_BirthCertNoContaining(long birthCert);
+
+    List<Patient> findAllByUser_PhoneContaining(String phone);
+
+    List<Patient> findAllByUser_EmailContaining(String email);
+
+    List<Patient> findAllByUser_UsernameContaining(String username);
+
 }

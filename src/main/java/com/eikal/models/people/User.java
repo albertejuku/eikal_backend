@@ -21,6 +21,8 @@ public class User extends Person{
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(generator = "user_sequence", strategy = GenerationType.AUTO)
     private Long id;
+    private String country;
+    private Long birthCertNo;
     private Long nationalId;
     private String passportNumber;
 

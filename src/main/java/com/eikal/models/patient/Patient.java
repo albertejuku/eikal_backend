@@ -41,6 +41,9 @@ public class Patient {
     private Long nationalId;
     private LocalDateTime dateCreated;
     private LocalDateTime dateModified;
+    private String modificationReason;
+    private Long modifierId;
+    private Long modifierTable;
 
     @JsonBackReference
     @JsonIgnoreProperties("createdBy")
