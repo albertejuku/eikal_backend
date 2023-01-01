@@ -59,12 +59,12 @@ public class PatientVisitController {
         return ResponseEntity.status(200).body(visits);
     }
 
-    @GetMapping("visit")
+    @GetMapping("visit/find")
     public ResponseEntity<?> findPatientVisitInFacility(@RequestParam Long patientId, @RequestParam Long facilityId) {
         List<PatientVisit> visits = visitService.findPatientVisitInFacility(patientId, facilityId);
         return !visits.isEmpty() ?
                 ResponseEntity.status(200).body(visits) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404, "Patient has no visit"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Patient has no visit in facility"));
     }
 
     @GetMapping("visits")
