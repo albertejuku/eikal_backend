@@ -83,7 +83,7 @@ public class UserController {
         Relationship relationship = userService.saveRs(map);
         return relationship != null ?
                 ResponseEntity.status(201).body(relationship) :
-                ResponseEntity.status(415).build();
+                ResponseEntity.status(415).body(new GlobalError((short) 415, "Relationship not saved"));
     }
 
     @GetMapping("relationship/{id}")
@@ -91,7 +91,7 @@ public class UserController {
         Relationship relationship = userService.findRelationship(id);
         return relationship != null ?
                 ResponseEntity.status(200).body(relationship) :
-                ResponseEntity.status(404).body("relationship not found");
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"relationship not found"));
     }
 
     @GetMapping("relationships/user")
@@ -99,7 +99,7 @@ public class UserController {
         List<Relationship> relationships = userService.findUserRelationships(userId);
         return !relationships.isEmpty() ?
                 ResponseEntity.status(200).body(relationships) :
-                ResponseEntity.status(404).body("no user relationship was found");
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"no user relationship was found"));
     }
 
     @GetMapping("kins/user")
@@ -107,7 +107,7 @@ public class UserController {
         List<Relationship> nextOfKins = userService.findAllUsersNextOfKin(userId);
         return !nextOfKins.isEmpty() ?
                 ResponseEntity.status(200).body(nextOfKins) :
-                ResponseEntity.status(404).body("no user next of kin was found");
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"no user next of kin was found"));
     }
 
 }

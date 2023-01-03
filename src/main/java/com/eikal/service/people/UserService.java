@@ -35,6 +35,7 @@ public class UserService {
     public User saveUser(User user) {
         user.setDateCreated(LocalDateTime.now());
         user.setDateModified(LocalDateTime.now());
+//        System.out.println(user);
         return userRepository.save(user);
     }
 
