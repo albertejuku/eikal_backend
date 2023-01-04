@@ -30,8 +30,8 @@ public class UserController {
     }
 
     @PostMapping("user/save")
-    public ResponseEntity<?> saveUser(@RequestBody User user) {
-        user = userService.saveUser(user);
+    public ResponseEntity<?> saveUser(@RequestBody Map<String, Object> userMap) {
+        User user = userService.saveUser(userMap);
         return user != null ?
                 ResponseEntity.status(201).body(user) :
                 ResponseEntity.status(415).body(new GlobalError((short) 415, "User not created"));

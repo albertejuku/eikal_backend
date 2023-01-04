@@ -37,6 +37,8 @@ public class PatientService {
         patient.setCreatedBy(employee);
         patient.setModifiedBy(employee);
         patient.setNationalId(Long.valueOf((String) map.get("nationalId")));
+        patient.setPersonalId(Boolean.parseBoolean((String) map.get("isPersonalId")));
+        patient.setRelationship((String) map.get("relationship"));
         patient.setDateCreated(LocalDateTime.now());
         patient.setDateModified(LocalDateTime.now());
         System.out.println(patient.getUser());
