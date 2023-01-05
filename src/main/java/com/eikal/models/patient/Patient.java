@@ -29,7 +29,7 @@ public class Patient {
     @GeneratedValue(generator = "patient_sequence", strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 

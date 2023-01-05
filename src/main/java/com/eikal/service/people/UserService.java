@@ -75,11 +75,11 @@ public class UserService {
 
     public Relationship saveRs(Map<? extends String, Object> map) {
         Relationship relationship = new Relationship();
-        relationship.setUser1(new User(Long.parseLong((String) map.get("user1"))));
-        relationship.setUser2(new User(Long.parseLong((String) map.get("user2"))));
-        relationship.setType(RelationshipType.valueOf((String) map.get("type")));
+        relationship.setUser1(new User(Long.parseLong(String.valueOf(map.get("user1")))));
+        relationship.setUser2(new User(Long.parseLong(String.valueOf(map.get("user2")))));
+        relationship.setType(RelationshipType.valueOf(String.valueOf(map.get("type"))));
         relationship.setDetails((String) map.get("details"));
-        relationship.setIsNextOfKinOf(Long.valueOf((String) map.get("isNextOfKinOf")));
+        relationship.setIsNextOfKinOf(Long.valueOf(String.valueOf(map.get("isNextOfKinOf"))));
         relationship.setDateCreated(LocalDateTime.now());
         relationship.setDateModified(LocalDateTime.now());
         return relationshipRepository.save(relationship);
