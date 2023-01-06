@@ -25,7 +25,7 @@ public class PaymentController {
         Payment addedPayment = paymentService.addPayment(payment);
         return addedPayment != null ?
                 ResponseEntity.status(201).body(addedPayment) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400, "Payment was not added"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400, "Not added"));
     }
 
     @PutMapping("payment/update")
@@ -33,7 +33,7 @@ public class PaymentController {
         Payment updatedPayment = paymentService.updatePayment(payment,id);
         return updatedPayment != null ?
                 ResponseEntity.status(201).body(updatedPayment) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Payment was not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not updated"));
     }
 
     @GetMapping("payment/all")
@@ -53,7 +53,7 @@ public class PaymentController {
         Payment payment = paymentService.findByOrderCode(code);
         return payment != null ?
                 ResponseEntity.status(200).body(payment) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404,"Payment not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"Not found"));
     }
 
     @GetMapping("payment/customerEmail")

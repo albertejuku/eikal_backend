@@ -25,7 +25,7 @@ public class OrderedItemController {
         OrderedItem addedOrderedItem = orderedItemService.addOrderedItem(orderedItem);
         return addedOrderedItem != null ?
                 ResponseEntity.status(201).body(addedOrderedItem) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Ordered item not added"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not added"));
     }
 
     @PutMapping("orderedItem/update")
@@ -33,7 +33,7 @@ public class OrderedItemController {
         OrderedItem updatedOrderedItem = orderedItemService.updateOrderedItem(orderedItem,id);
         return updatedOrderedItem != null ?
                 ResponseEntity.status(201).body(updatedOrderedItem) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Ordered item not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not updated"));
     }
 
     @GetMapping("orderedItem/{id}")
@@ -41,7 +41,7 @@ public class OrderedItemController {
         OrderedItem orderedItem = orderedItemService.findOrderedItemById(id);
         return orderedItem != null ?
                 ResponseEntity.status(200).body(orderedItem) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404,"Ordered item not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"Not found"));
     }
 
     @GetMapping("orderedItem/all")

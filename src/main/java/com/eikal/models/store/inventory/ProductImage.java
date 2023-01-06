@@ -28,6 +28,8 @@ public class ProductImage {
     @Lob
     private String description;
     private int position;
+    private boolean isPrimary;
+    private boolean deleteStatus;
 
     @ManyToOne
     @JoinColumn(name = "product_feature")

@@ -15,6 +15,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * @author David Kinyanjui
+ */
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,8 +39,8 @@ public class Appointment {
     private LocalTime actualStartTime;
     private LocalTime endTime;
     private LocalTime actualEndTime;
-    private LocalDateTime dateCreated;
-    private LocalDateTime dateModified;
+    private LocalDateTime dateCreated = LocalDateTime.now();
+    private LocalDateTime dateModified = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "created_by")

@@ -42,7 +42,7 @@ public class ItemCategoryController {
         ItemCategory itemCategory = itemCategoryService.updateCategory(category,Id);
         return itemCategory != null ?
                 ResponseEntity.status(201).body(itemCategory) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Item Category not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not updated"));
     }
 
     @GetMapping("itemCategories/all")
@@ -50,6 +50,6 @@ public class ItemCategoryController {
         List<ItemCategory> itemCategories = itemCategoryService.findAllCategories();
         return !itemCategories.isEmpty() ?
                 ResponseEntity.status(200).body(itemCategories) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404, "Item categories not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Not found"));
     }
 }

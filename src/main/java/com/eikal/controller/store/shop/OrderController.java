@@ -25,7 +25,7 @@ public class OrderController {
         Order_ addedOrder = orderService.addOrder(order);
         return addedOrder != null ?
                 ResponseEntity.status(201).body(addedOrder) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Order not added"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not added"));
     }
 
     @PutMapping("order/update")
@@ -33,7 +33,7 @@ public class OrderController {
         Order_ updatedOrder = orderService.updateOrder(order,id);
         return updatedOrder != null ?
                 ResponseEntity.status(201).body(updatedOrder) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400, "Order not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400, "Not updated"));
     }
 
     @GetMapping("order/{id}")
@@ -41,7 +41,7 @@ public class OrderController {
         Order_ order = orderService.findOrderById(id);
         return order != null ?
                 ResponseEntity.status(200).body(order) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404, "Order not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404, "Not found"));
     }
 
     @GetMapping("order/all")
@@ -61,7 +61,7 @@ public class OrderController {
         Order_ order = orderService.findByCode(code);
         return order != null ?
                 ResponseEntity.status(200).body(order) :
-                ResponseEntity.status(404).body(new GlobalError((short) 404,"Order not found"));
+                ResponseEntity.status(404).body(new GlobalError((short) 404,"Not found"));
     }
 
     @GetMapping("order/customer")

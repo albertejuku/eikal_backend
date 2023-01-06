@@ -26,7 +26,7 @@ public class ManufacturerController {
         Manufacturer addedManufacturer = manufactureService.addManufacture(manufacturer);
         return addedManufacturer != null ?
            ResponseEntity.status(201).body(addedManufacturer) :
-           ResponseEntity.status(400).body(new GlobalError((short) 400,"Manufacturer not added"));
+           ResponseEntity.status(400).body(new GlobalError((short) 400,"Not added"));
     }
 
     @PutMapping("manufacturer/update")
@@ -34,7 +34,7 @@ public class ManufacturerController {
         Manufacturer updatedManufacture = manufactureService.updateManufacturer(manufacturer,Id);
         return updatedManufacture != null ?
                 ResponseEntity.status(201).body(updatedManufacture) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Manufacturer not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not updated"));
     }
 
     @GetMapping("manufacturer/businessCategory")

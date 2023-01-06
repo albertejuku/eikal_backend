@@ -26,7 +26,7 @@ public class TaxController {
         Tax addedTax = taxService.addTax(tax);
         return addedTax != null ?
                 ResponseEntity.status(201).body(addedTax) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Tax was not added"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not added"));
     }
 
     @PutMapping("tax/update")
@@ -34,7 +34,7 @@ public class TaxController {
         Tax updatedTax = taxService.updateTax(tax,id);
         return updatedTax != null ?
                 ResponseEntity.status(201).body(updatedTax) :
-                ResponseEntity.status(400).body(new GlobalError((short) 400,"Tax was not updated"));
+                ResponseEntity.status(400).body(new GlobalError((short) 400,"Not updated"));
     }
 
     @GetMapping("tax/type")
