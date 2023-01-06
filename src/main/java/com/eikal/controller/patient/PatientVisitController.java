@@ -53,6 +53,12 @@ public class PatientVisitController {
                 ResponseEntity.status(404).body(new GlobalError((short) 404, "No visit in facility"));
     }
 
+    @GetMapping("visit/facility-date")
+    public ResponseEntity<?> findVisitByDate(@RequestParam Long id, @RequestParam String dateFrom, @RequestParam String dateTo, @RequestParam int page, @RequestParam int size) {
+        Page<PatientVisit> visits = visitService.findVisitByDate(id, dateFrom, dateTo, page, size);
+        return ResponseEntity.status(200).body(visits);
+    }
+
     @GetMapping("visit/department")
     public ResponseEntity<?> findVisitsByDepartment(@RequestParam Long id, @RequestParam int page, @RequestParam int size) {
         Page<PatientVisit> visits = visitService.findAllInDepartment(id, page, size);
