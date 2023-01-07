@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
-    Page<Patient> findAllByFacility_Id(Long facilityId, Pageable pageable);
+    Page<Patient> findAllByFacility_IdOrderByDateCreatedDesc(Long facilityId, Pageable pageable);
 
     List<Patient> findAllByUser_NationalId(long nationalId);
 

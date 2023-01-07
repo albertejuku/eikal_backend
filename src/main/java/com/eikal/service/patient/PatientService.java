@@ -76,7 +76,7 @@ public class PatientService {
 
     public Page<Patient> findPatientsInFacility(Long facilityId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return patientRepository.findAllByFacility_Id(facilityId, pageable);
+        return patientRepository.findAllByFacility_IdOrderByDateCreatedDesc(facilityId, pageable);
     }
 
     public List<Patient> findPatientByNationalID(long nationalId) {
