@@ -11,6 +11,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * @author David Kinyanjui
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,7 +25,7 @@ public class Supplier {
     @Id
     @SequenceGenerator(name = "supplier_sequence", sequenceName = "supplier_sequence", allocationSize = 1)
     @GeneratedValue(generator = "sequence_generator", strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
 
     @ManyToOne
