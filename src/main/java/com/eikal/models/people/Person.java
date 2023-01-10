@@ -1,6 +1,7 @@
 package com.eikal.models.people;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.EnumType;
@@ -27,7 +28,9 @@ public class Person {
     private String username;
     private String email;
     private String phone;
+
     private LocalDate birthDate;
+
     @Enumerated(EnumType.STRING)
     private GenderType gender = GenderType.OTHER;
     private LocalDateTime dateCreated = LocalDateTime.now();

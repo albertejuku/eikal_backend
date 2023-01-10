@@ -29,7 +29,7 @@ public class Patient {
     @GeneratedValue(generator = "patient_sequence", strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -37,21 +37,29 @@ public class Patient {
     @JsonIgnoreProperties("facility")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "facility_id")
+    @ToString.Exclude
     private Facility facility;
     private Long nationalId;
+    private boolean isPersonalId;
+    private String relationship = "N/A";
     private LocalDateTime dateCreated;
     private LocalDateTime dateModified;
+    private String modificationReason;
+    private Long modifierId;
+    private Long modifierTable;
 
     @JsonBackReference
     @JsonIgnoreProperties("createdBy")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by")
+    @ToString.Exclude
     private Employee createdBy;
 
     @JsonBackReference
     @JsonIgnoreProperties("modifiedBy")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modified_by")
+    @ToString.Exclude
     private Employee modifiedBy;
 
     public Patient(Long id) {

@@ -14,6 +14,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<?> illegalStateHandler(IllegalStateException e, WebRequest request) {
+        e.printStackTrace();
         return ResponseEntity.status(404).body("Bad Type, Error has occurred\nMessage: " + e.getMessage());
     }
 

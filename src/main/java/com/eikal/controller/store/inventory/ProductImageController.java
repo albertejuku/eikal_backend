@@ -3,7 +3,7 @@ package com.eikal.controller.store.inventory;
 import com.eikal.error.GlobalError;
 import com.eikal.models.store.inventory.ProductImage;
 import com.eikal.service.store.inventory.ProductImageService;
-import org.apache.commons.io.FilenameUtils;
+import com.eikal.util.Utils;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -73,7 +73,7 @@ public class ProductImageController {
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_TYPE, "image/" + FilenameUtils.getExtension(productImage.getFilename()));
+        headers.add(HttpHeaders.CONTENT_TYPE, "image/" + Utils.getFileExtension(productImage.getFilename()));
 
         return ResponseEntity.status(200).headers(headers).body(new InputStreamResource(inputStream));
     }

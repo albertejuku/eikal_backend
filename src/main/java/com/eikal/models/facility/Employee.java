@@ -32,7 +32,7 @@ public class Employee {
     @JoinColumn(name = "category_id")
     private EmployeeCategory category;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "app_user_id")
     private AppUser appUser;
 

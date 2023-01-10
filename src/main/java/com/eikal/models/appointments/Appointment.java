@@ -43,11 +43,11 @@ public class Appointment {
     private LocalDateTime dateModified = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "created_by_id")
+    @JoinColumn(name = "created_by")
     private AppUser createdBy;
 
     @ManyToOne
-    @JoinColumn(name = "modified_by_id")
+    @JoinColumn(name = "modified_by")
     private AppUser modifiedBy;
 
     private int duration;
@@ -66,7 +66,7 @@ public class Appointment {
     private Patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "medical_practitioner_id")
+    @JoinColumn(name = "practitioner_id")
     private Employee medicalPractitioner;
 
     @ManyToOne

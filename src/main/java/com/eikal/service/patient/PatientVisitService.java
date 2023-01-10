@@ -11,7 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -64,4 +66,14 @@ public class PatientVisitService {
         return visitRepository.findAllByDepartment_Id(depId, PageRequest.of(page, size));
     }
 
+    public List<PatientVisit> findPatientVisitInFacility(Long patientId, Long facilityId) {
+        LocalDate localDate = LocalDate.now();
+        return visitRepository.findAllByPatient_IdAndDepartment_Facility_Id(patientId, facilityId);
+    }
+
+    public Page<PatientVisit> findVisitByDate(Long id, String dateFrom, String dateTo, int page, int size) {
+        LocalDate from = LocalDate.parse(dateFrom, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate to = LocalDate.parse(dateTo, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return visitRepository.findVisitByDateRange(id, from.atStartOfDay(), to.atTime(23, 59, 59), PageRequest.of(page, size));
+    }
 }

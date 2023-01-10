@@ -39,7 +39,7 @@ public class DepartmentService {
         department.setDateCreated(LocalDateTime.now());
         department.setDateModified(LocalDateTime.now());
         department.setFacility(new Facility(Long.valueOf(String.valueOf(departmentMap.get("facility")))));
-        return  departmentRepository.save(department);
+        return departmentRepository.save(department);
     }
 
     public Department findDepartmentById(Long id) {
@@ -53,8 +53,8 @@ public class DepartmentService {
     public EmployeeDepartment saveEmpDep(Map<String, Object> map) {
         EmployeeDepartment employeeDepartment = new EmployeeDepartment();
         employeeDepartment.setTitle(DepartmentTitle.valueOf((String) map.get("title")));
-        employeeDepartment.setEmployee(employeeService.findById(Long.valueOf((Integer) map.get("employee"))));
-        employeeDepartment.setDepartment(this.findDepartmentById(Long.valueOf((Integer) map.get("department"))));
+        employeeDepartment.setEmployee(employeeService.findById(Long.valueOf(String.valueOf(map.get("employee")))));
+        employeeDepartment.setDepartment(this.findDepartmentById(Long.valueOf(String.valueOf(map.get("department")))));
         employeeDepartment.setDateModified(LocalDateTime.now());
         employeeDepartment.setDateCreated(LocalDateTime.now());
         return employeeDepartmentRepository.save(employeeDepartment);

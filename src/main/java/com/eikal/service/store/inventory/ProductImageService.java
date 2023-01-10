@@ -4,7 +4,7 @@ package com.eikal.service.store.inventory;
 import com.eikal.models.store.ResourceNotFoundException;
 import com.eikal.models.store.inventory.ProductImage;
 import com.eikal.repository.store.inventory.ProductImageRepo;
-import org.apache.commons.io.FilenameUtils;
+import com.eikal.util.Utils;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
@@ -69,7 +69,7 @@ public class ProductImageService {
     public String getFileName(MultipartFile file,ProductImage productImage) {
 
         //Generate a unique image ID
-        String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
+        String fileExtension = Utils.getFileExtension(file.getOriginalFilename());
         String imageId = String.valueOf(productImage.getId());
         String fileName = imageId + file.getOriginalFilename() +
                 "." + fileExtension;
